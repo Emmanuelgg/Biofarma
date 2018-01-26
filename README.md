@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # angular4-quickstart
 
 Angular 4 Apps Quickstart Configuration that deploys an app using [angular-cli](https://github.com/angular/angular-cli) and [Docker Container](https://www.docker.com/what-container) (Great thanks to [angular-cli-docker](https://github.com/suchja/angular-cli-docker) which is a reference project for this)
@@ -35,3 +36,6 @@ If the build.sh launches the server in the container and the app gets ready, you
 
 Then, open your browser on http://localhost:4200/
 ![app-welcome-page](https://github.com/yokawasa/angular4-quickstart/blob/master/img/app-welcome-page.png)
+=======
+# prueba_store
+>>>>>>> c71db68ef24834716c9c9b393c0ee7d1c8c16885
