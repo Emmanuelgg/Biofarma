@@ -7,7 +7,7 @@ import {AppComponent} from "../app.component";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  
+
   constructor() { }
 
   ngOnInit() {
