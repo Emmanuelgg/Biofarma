@@ -1,0 +1,18 @@
+<nav class="{{main.mainColor}}">
+  <div class="nav-wrapper">
+    <a routerLink="/dashboard" class="brand-logo center" id="title-logo"><img id="imageLogo" src="{{main.pathLogo}}"/>{{main.title}}</a>
+    <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li class="active"><a  routerLink="/dashboard" >Inicio</a></li>
+      <li><a routerLink="/date" >Citas</a></li>
+      <li><a routerLink="/sales" >Ofertas</a></li>
+      <li><a routerLink="/contact" >Contacto</a></li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li class="active"><a routerLink="/dashboard" >Inicio</a></li>
+      <li><a routerLink="/date" >Citas</a></li>
+      <li><a routerLink="/sales" >Ofertas</a></li>
+      <li><a routerLink="/contact" >Contacto</a></li>
+    </ul>
+  </div>
+</nav>

@@ -1,7 +1,15 @@
 #aboutUs {
-  height: 500px;
+  height: 490px;
 }
 
 #aboutUs p {
   font-size: 15pt;
+}
+
+#containerCarousel{
+  padding-top: 1%;
+}
+
+.carousel{
+  height: 550px;
 }
