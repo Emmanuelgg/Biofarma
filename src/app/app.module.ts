@@ -16,6 +16,10 @@ import { DateComponent } from './date/date.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 
+// Import the Http Module and our Data Service
+import { HttpModule } from '@angular/http';
+import { DataService } from './data.service';
+
 
 
 
@@ -38,9 +42,10 @@ import { FooterComponent } from './footer/footer.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDuSBrONzdoZ_EPoWhM8btDW-Er7oldCIU'
     }),
+    HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
