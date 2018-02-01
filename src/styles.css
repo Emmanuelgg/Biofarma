@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+html {
+  /*font Abril*/
+  /*font-family:  'Abril Fatface', cursive;*/
+  font-family: 'Oswald', sans-serif;
+}
+
 #icon{
   margin: 0 auto;
   padding: 0;

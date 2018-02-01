@@ -17,4 +17,9 @@ export class DataService {
       .map(result => this.result = result.json().response.data);
   }
 
+  getLastProducts() {
+    return this._http.get(this.main.pathDB+"lastProducts")
+      .map(result => this.result = result.json().response.data);
+  }
+
 }

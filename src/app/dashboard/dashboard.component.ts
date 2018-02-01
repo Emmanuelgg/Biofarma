@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   @ViewChildren('carousel-item') carousel: QueryList<any>;
 
   constructor(private _dataService: DataService) {
-    this._dataService.getProducts()
+    this._dataService.getLastProducts()
         .subscribe(res => this.products = res);
   }
 
@@ -44,9 +44,9 @@ export class DashboardComponent implements OnInit {
   }
 
   initCarousel(){
-    $('.carousel.carousel-slider').carousel({fullWidth: true, duration: 350});
+    $('.carousel.carousel-slider').carousel({fullWidth: true, duration: 400});
     function autoplay() {
-        setTimeout(autoplay, 5000);
+        setTimeout(autoplay, 6500);
         $('.carousel').carousel('next');
     }
     autoplay();

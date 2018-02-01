@@ -42,4 +42,22 @@ router.get('/products', (req, res) => {
     });
 });
 
+// Get last products
+router.get('/lastProducts', (req, res) => {
+    connection((db) => {
+        db.collection('products')
+            .find()
+            .sort({_id: -1})
+            .limit(3)
+            .toArray()
+            .then((products) => {
+                response.data = products;
+                res.json({response});
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+
 module.exports = router;
