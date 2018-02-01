@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList} from '@angular/core';
+
 import {AppComponent} from "../app.component";
+
+import {Main} from "../main";
+
+import { DataService } from '../data.service';
 
 declare var jquery:any;
 declare var $ :any
@@ -11,9 +16,30 @@ declare var $ :any
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  main: any = new Main;
+  products: Array<any>;
+  @ViewChildren('carousel-item') carousel: QueryList<any>;
+
+  constructor(private _dataService: DataService) {
+    this._dataService.getProducts()
+        .subscribe(res => this.products = res);
+  }
 
   ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+    this.carousel.changes.subscribe(t => {
+      this.ngForRendred();
+    })
+  }
+
+  ngForRendred() {
+    this.initDashboard();
+  }
+
+  initDashboard(){
     this.initCarousel();
   }
 

@@ -1,0 +1,10 @@
+#imagesProducts{
+  width: 350px;
+  height: 350px;
+}
+
+.card-title{
+  color:black !important;
+}
+
+.materialboxed{ display: inline-block; }

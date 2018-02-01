@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
-
+var db;
 // Connect
 const connection = (closure) => {
-    return MongoClient.connect('mongodb://localhost:27017/mean', (err, db) => {
+    return MongoClient.connect('mongodb://localhost:27017', (err, client) => {
         if (err) return console.log(err);
-
+        db = client.db('biofarma');
         closure(db);
     });
 };
@@ -26,15 +26,15 @@ let response = {
     message: null
 };
 
-// Get users
-router.get('/users', (req, res) => {
+// Get products
+router.get('/products', (req, res) => {
     connection((db) => {
-        db.collection('users')
+        db.collection('products')
             .find()
             .toArray()
-            .then((users) => {
-                response.data = users;
-                res.json(response);
+            .then((products) => {
+                response.data = products;
+                res.json({response});
             })
             .catch((err) => {
                 sendError(err, res);
