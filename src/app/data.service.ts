@@ -22,4 +22,10 @@ export class DataService {
       .map(result => this.result = result.json().response.data);
   }
 
+  postUploadFiles() {
+    return this._http.get(this.main.pathDB+"uploadFiles")
+      .map(result => this.result = result.json().response.data);
+  }
+
+
 }

@@ -10,6 +10,16 @@ export class Main {
   mainColor: string = 'teal accent-4';
   footerColor: string = 'teal accent-4';
   iconColor: string = 'grey darken-4';
+  textColor : string = 'grey-text text-lighten-3';
+    //button
+  buttonDefaultColor : string = 'grey darken-3 teal-text text-accent-4 ';
+  buttonDangerColor : string = 'grey darken-3 red-text text-lighten-1 ';
+  buttonSuccessColor : string = 'grey darken-3 green-text text-accent-4  ';
+    //navTitle
+      //color 1
+  //navTitle : string = 'teal accent-4 grey-text text-lighten-3';
+      //color 2
+  navTitle : string = 'grey darken-3 teal-text text-accent-4';
 
   //icons
   faceIcon: string = 'assets/images/facebook.png';

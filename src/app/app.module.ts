@@ -19,6 +19,7 @@ import { FooterComponent } from './footer/footer.component';
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
+import { AdminProductsComponent } from './admin-products/admin-products.component';
 
 
 
@@ -33,7 +34,8 @@ import { DataService } from './data.service';
     SalesComponent,
     DateComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    AdminProductsComponent
   ],
   imports: [
     BrowserModule,

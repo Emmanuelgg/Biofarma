@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col l12 m12 s12">
+      <div class="row">
+          <div class="card">
+              <form #formAdminProducts="ngForm" (ngSubmit)="onSubmit(formAdminProducts)" encType="multipart/form-data" novalidate>
+                <div class="row {{main.navTitle}} ">
+                    <div class="col l12 m12 s12 hide-on-small-only">
+                        <span class="card-title left-aling">Productos</span>
+                        <a class="waves-effect waves-light btn {{main.buttonDangerColor}} right"><i class="material-icons left">delete_forever</i>Eliminar</a>
+                        <a (click)="formAdminProducts.ngSubmit.emit()" class="waves-effect waves-light btn {{main.buttonSuccessColor}} right"><i class="material-icons left">save</i>Guardar</a>
+                        <a class="waves-effect waves-light btn {{main.buttonDefaultColor}} right"><i class="material-icons left">view_list</i>Listar</a>
+                    </div>
+                    <div class="col l12 m12 s12 show-on-small-only hide-on-med-and-up">
+                        <span class="card-title left-aling">Productos</span>
+                        <a class="waves-effect waves-light btn-small {{main.buttonDangerColor}} right"><i class="material-icons left">delete_forever</i>Eliminar</a>
+                        <a class="waves-effect waves-light btn-small {{main.buttonSuccessColor}} right"><i class="material-icons left">save</i>Guardar</a>
+                        <a class="waves-effect waves-light btn-small {{main.buttonDefaultColor}} right"><i class="material-icons left">view_list</i>Listar</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l4 m6 s12">
+                        <input name="nameProduct" type="text" class="validate" ngModel>
+                        <label for="nameProduct">Nombre</label>
+                    </div>
+                    <div class="input-field col l4 m6 s12">
+                        <input name="descriptionProduct" type="text" class="validate" ngModel>
+                        <label for="descriptionProduct">Descripción</label>
+                    </div>
+                    <div class="input-field col l4 m6 s12">
+                        <input name="amountProduct" type="text" class="validate" value="{{ getValueChange() | currency }}" (change)="onChange($event.target.value)" ngModel>
+                        <label for="amountProduct">Precio</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l4 m6 s12">
+                        <div class="file-field input-field">
+                           <div class="btn">
+                              <span>Imagen</span>
+                              <input name="fileImageProduct" type="file" ngModel (change)="getFiles($event)">
+                           </div>
+                           <div class="file-path-wrapper">
+                              <input class="file-path validate" type="text">
+                           </div>
+                       </div>
+                    </div>
+                </div>
+              </form>
+          </div>
+      </div>
+    </div>
+</div>
