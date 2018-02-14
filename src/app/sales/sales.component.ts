@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 
 import { DataService } from '../data.service';
 
+import { CurrencyPipe } from '@angular/common';
+
 import {Main} from '../main'
 
 declare var jquery:any;

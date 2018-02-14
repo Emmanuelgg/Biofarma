@@ -17,7 +17,8 @@ export class AdminProductsComponent implements OnInit {
 
   main: any = new Main;
   valueCurrency : string = '0';
-  filesToUpload: Array<File> = [];
+  files: FileList;
+  response: any;
 
 
   constructor(private _dataService: DataService) {
@@ -39,18 +40,39 @@ export class AdminProductsComponent implements OnInit {
     return this.valueCurrency;
   }
 
-  onSubmit(formAdminProducts: NgForm) {
-      const files: Array<File> = this.filesToUpload;
-      formAdminProducts.value.fileImageProduct = files[0]['name'];
-      formAdminProducts.value.type = files[0]['type'];
-      // console.log(formAdminProducts.value);
-      this._dataService.postUploadFiles()
-          .subscribe(res => res = res);
+
+  onSubmit(form: NgForm, collectionName:string, method:string) {
+
+    if (form.valid) {
+
+        if( this.files != null ){
+          form.value.fileImageProduct = this.files[0].name;
+          form.value.type = this.files[0].type;
+        }
+        this._dataService.addToTable(method, form.form.value, collectionName)
+            .subscribe(res => this.response = res);
+            console.log(this.response);
+            form.reset();
+
+          // this._dataService.addProduct(formAdminProducts.form.value)
+          //     .subscribe(res => this.message = res);
+
+          // this._dataService.uploadFiles(this.files)
+          //     .subscribe(res => this.message = res);
+
+          // console.log(formAdminProducts.value);
+          // this._dataService.postUploadFiles()
+        //     .subscribe(res => res = res);
+
+    } else {
+        console.log("error");
+    }
+
   }
 
   getFiles(event){
-      this.filesToUpload = <Array<File>>event.target.files;
-      // this.files = event.target.files;
+      // this.filesToUpload = <Array<File>>event.target.files;
+      this.files = event.target.files;
    }
 
 }
