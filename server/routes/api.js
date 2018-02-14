@@ -42,6 +42,27 @@ let response = {
 //     });
 // });
 
+//getTable
+router.post('/get', (req, res) => {
+    connection((db) => {
+        db.collection(req.body.collectionName.toString())
+            .find()
+            .sort(req.body.order)
+            .limit(req.body.limit)
+            .toArray()
+            .then((result) => {
+                response.data = result;
+                response.ok = true;
+                response.status = 1;
+                response.message = "Se obtuvieron los registros correctamente";
+                res.json({response});
+            })
+            .catch((err) => {
+                sendError(err, res);
+            });
+    });
+});
+
 //addToTable
 router.post('/add', (req, res) => {
     connection((db) => {
@@ -74,20 +95,20 @@ router.post('/uploadFiles', (req, res) => {
 });
 
 // Get products
-router.get('/products', (req, res) => {
-    connection((db) => {
-        db.collection('products')
-            .find()
-            .toArray()
-            .then((product) => {
-                response.data = product;
-                res.json({response});
-            })
-            .catch((err) => {
-                sendError(err, res);
-            });
-    });
-});
+// router.get('/products', (req, res) => {
+//     connection((db) => {
+//         db.collection('products')
+//             .find()
+//             .toArray()
+//             .then((product) => {
+//                 response.data = product;
+//                 res.json({response});
+//             })
+//             .catch((err) => {
+//                 sendError(err, res);
+//             });
+//     });
+// });
 
 // Get last products
 router.get('/lastProducts', (req, res) => {

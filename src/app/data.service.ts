@@ -17,8 +17,19 @@ export class DataService {
 
   constructor(private _http: Http) { }
 
-  getProducts() {
-    return this._http.get(this.main.pathDB+"products")
+  addToTable(url:string, form:any, collectionName:string) : Observable<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    var data = {form:form,collectionName:collectionName};
+    return this._http.post(this.main.pathDB+url, data, options)
+      .map(result => this.result = result.json().response);
+  }
+
+  getTable(url:string,collectionName:string,order:any,limit) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    var data = {collectionName:collectionName, limit:limit, order:order};
+    return this._http.post(this.main.pathDB+url,data,options)
       .map(result => this.result = result.json().response.data);
   }
 
@@ -40,13 +51,6 @@ export class DataService {
   //     .map(result => this.result = result.json().response.data);
   // }
 
-  addToTable(url:string, form:any, collectionName:string) : Observable<any> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    var data = {form:form,collectionName:collectionName};
-    return this._http.post(this.main.pathDB+url, data, options)
-      .map(result => this.result = result.json().response);
-  }
 
 
 }

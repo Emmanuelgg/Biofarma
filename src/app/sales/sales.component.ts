@@ -24,7 +24,7 @@ export class SalesComponent implements OnInit {
   constructor(private _dataService: DataService) {
 
     // Access the Data Service's getProducts() method we defined
-    this._dataService.getProducts()
+    this._dataService.getTable('get','products',{_id:-1},100)
         .subscribe(res => this.products = res);
   }
 

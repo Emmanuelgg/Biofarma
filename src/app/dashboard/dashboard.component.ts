@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   @ViewChildren('carousel-item') carousel: QueryList<any>;
 
   constructor(private _dataService: DataService) {
-    this._dataService.getLastProducts()
+    this._dataService.getTable('get','products',{_id:-1},4)
         .subscribe(res => this.products = res);
   }
 
