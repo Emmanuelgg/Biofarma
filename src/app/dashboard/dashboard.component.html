@@ -7,7 +7,7 @@
             <div *ngFor="let product of products" id="carousel-item" class="carousel-item black white-text">
               <h2>{{product.name}}</h2>
               <p class="white-text">{{product.description}}</p>
-                <img id="imagesProducts" src="{{main.pathImages}}{{product.urlImage}}">
+                <img id="imagesProducts" src="{{main.pathImagesResources}}{{product.urlFile  ? product.urlFile : 'imagePreview.png'}}">
 
             </div>
         </div>

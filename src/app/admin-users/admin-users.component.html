@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col l12 m12 s12">
+      <div class="row">
+          <div class="card">
+              <form #formAdminUsers="ngForm" (ngSubmit)="methods.onSubmit(formAdminUsers,'admins','add',methods.files,'el usuario')" encType="multipart/form-data" novalidate>
+                <div class="row {{main.navTitle}} ">
+                    <div class="col l12 m12 s12 hide-on-med-and-down">
+                        <span class="card-title left-aling">Administración de perfil</span>
+                        <a class="waves-effect waves-light btn {{main.buttonDangerColor}} right"><i class="material-icons left">delete_forever</i>Eliminar</a>
+                        <a (click)="formAdminUsers.reset()" class="waves-effect waves-light btn {{main.buttonDefaultColor}} right"><i class="material-icons left">cached</i>Reiniciar</a>
+                        <a (click)="formAdminUsers.ngSubmit.emit()" class="waves-effect waves-light btn {{main.buttonSuccessColor}} right"><i class="material-icons left">save</i>Guardar</a>
+                    </div>
+                    <div class="col l12 m12 s12 show-on-medium-and-down hide-on-large-only">
+                        <span class="card-title left-aling">Administración de perfil</span>
+                        <a class="waves-effect waves-light btn-small {{main.buttonDangerColor}} right"><i class="material-icons left">delete_forever</i>Eliminar</a>
+                        <a (click)="formAdminProducts.reset()" class="waves-effect waves-light btn-small {{main.buttonDefaultColor}} right"><i class="material-icons left">cached</i>Reiniciar</a>
+                        <a (click)="formAdminProducts.ngSubmit.emit()" class="waves-effect waves-light btn-small {{main.buttonSuccessColor}} right"><i class="material-icons left">save</i>Guardar</a>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="row">
+                        <div class="col l4 m6 s12">
+                            <h5>Imagen de producto</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col l4 m12 s12 center-align">
+                            <img id="imagePreview" class="" [src]="methods.urlFile" alt="profileImage" />
+                            <div class="input-field">
+                                <div class="file-field input-field">
+                                   <div class="btn">
+                                      <span>Imagen</span>
+                                      <input name="urlFile" type="file" ngModel (change)="methods.getFiles($event)">
+                                   </div>
+                                   <div class="file-path-wrapper">
+                                      <input name="filePath" class="file-path validate" type="text" ngModel>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l4 m6 s12">
+                        <input name="userName" type="text" class="validate" ngModel required>
+                        <label for="userName">Nombre</label>
+                    </div>
+                    <div class="input-field col l4 m6 s12">
+                        <input name="userPassword" type="text" class="validate" ngModel required>
+                        <label for="userPassword">Contraseña</label>
+                    </div>
+                </div>
+              </form>
+          </div>
+      </div>
+    </div>
+</div>

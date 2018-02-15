@@ -8,6 +8,8 @@ import { CurrencyPipe } from '@angular/common';
 
 import { Main } from '../main';
 
+import { Methods } from '../methods'
+
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
@@ -16,13 +18,14 @@ import { Main } from '../main';
 export class AdminProductsComponent implements OnInit {
 
   main: any = new Main;
+  methods: any;
   valueCurrency : string = '0';
   files: FileList;
   response: any;
 
 
   constructor(private _dataService: DataService) {
-
+      this.methods = new Methods(_dataService);
   }
 
   ngOnInit() {
@@ -41,38 +44,16 @@ export class AdminProductsComponent implements OnInit {
   }
 
 
-  onSubmit(form: NgForm, collectionName:string, method:string) {
 
-    if (form.valid) {
 
-        if( this.files != null ){
-          form.value.fileImageProduct = this.files[0].name;
-          form.value.type = this.files[0].type;
-        }
-        this._dataService.addToTable(method, form.form.value, collectionName)
-            .subscribe(res => this.response = res);
-            console.log(this.response);
-            form.reset();
+   // this._dataService.addProduct(formAdminProducts.form.value)
+   //     .subscribe(res => this.message = res);
 
-          // this._dataService.addProduct(formAdminProducts.form.value)
-          //     .subscribe(res => this.message = res);
+   // this._dataService.uploadFiles(this.files)
+   //     .subscribe(res => this.message = res);
 
-          // this._dataService.uploadFiles(this.files)
-          //     .subscribe(res => this.message = res);
-
-          // console.log(formAdminProducts.value);
-          // this._dataService.postUploadFiles()
-        //     .subscribe(res => res = res);
-
-    } else {
-        console.log("error");
-    }
-
-  }
-
-  getFiles(event){
-      // this.filesToUpload = <Array<File>>event.target.files;
-      this.files = event.target.files;
-   }
+   // console.log(formAdminProducts.value);
+   // this._dataService.postUploadFiles()
+   //     .subscribe(res => res = res);
 
 }

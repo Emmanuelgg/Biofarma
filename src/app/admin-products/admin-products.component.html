@@ -1,51 +1,117 @@
+<!-- start form to products-->
 <div class="row">
     <div class="col l12 m12 s12">
       <div class="row">
           <div class="card">
-              <form #formAdminProducts="ngForm" (ngSubmit)="onSubmit(formAdminProducts,'products','add')" encType="multipart/form-data" novalidate>
+              <form #formAdminProducts="ngForm" name="formAdminProducts" (ngSubmit)="methods.onSubmit(formAdminProducts,'products','add',methods.files,'el producto')" encType="multipart/form-data" novalidate>
                 <div class="row {{main.navTitle}} ">
-                    <div class="col l12 m12 s12 hide-on-small-only">
+                    <div class="col l12 m12 s12 hide-on-med-and-down">
                         <span class="card-title left-aling">Productos</span>
                         <a class="waves-effect waves-light btn {{main.buttonDangerColor}} right"><i class="material-icons left">delete_forever</i>Eliminar</a>
+                        <a (click)="methods.resetForm(formAdminProducts)"  class="waves-effect waves-light btn {{main.buttonDefaultColor}} right"><i class="material-icons left">cached</i>Reiniciar</a>
                         <a (click)="formAdminProducts.ngSubmit.emit()" class="waves-effect waves-light btn {{main.buttonSuccessColor}} right"><i class="material-icons left">save</i>Guardar</a>
                         <a class="waves-effect waves-light btn {{main.buttonDefaultColor}} right"><i class="material-icons left">view_list</i>Listar</a>
                     </div>
-                    <div class="col l12 m12 s12 show-on-small-only hide-on-med-and-up">
+                    <div class="col l12 m12 s12 show-on-medium-and-down hide-on-large-only">
                         <span class="card-title left-aling">Productos</span>
                         <a class="waves-effect waves-light btn-small {{main.buttonDangerColor}} right"><i class="material-icons left">delete_forever</i>Eliminar</a>
-                        <a class="waves-effect waves-light btn-small {{main.buttonSuccessColor}} right"><i class="material-icons left">save</i>Guardar</a>
+                        <a (click)="methods.resetForm(formAdminProducts)" class="waves-effect waves-light btn-small {{main.buttonDefaultColor}} right"><i class="material-icons left">cached</i>Reiniciar</a>
+                        <a (click)="formAdminProducts.ngSubmit.emit()" class="waves-effect waves-light btn-small {{main.buttonSuccessColor}} right"><i class="material-icons left">save</i>Guardar</a>
                         <a class="waves-effect waves-light btn-small {{main.buttonDefaultColor}} right"><i class="material-icons left">view_list</i>Listar</a>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col l4 m6 s12">
-                        <input name="nameProduct" type="text" class="validate" ngModel>
-                        <label for="nameProduct">Nombre</label>
+                <div class="section">
+                    <div class="row">
+                        <div class="col l4 m6 s12">
+                            <h5>Imagen de producto</h5>
+                        </div>
                     </div>
-                    <div class="input-field col l4 m6 s12">
-                        <input name="descriptionProduct" type="text" class="validate" ngModel>
-                        <label for="descriptionProduct">Descripción</label>
-                    </div>
-                    <div class="input-field col l4 m6 s12">
-                        <input name="amountProduct" type="text" class="validate" value="{{ getValueChange() | currency }}" (change)="onChange($event.target.value)" ngModel>
-                        <label for="amountProduct">Precio</label>
+                    <div class="row">
+                        <div class="col l4 m12 s12 center-align">
+                            <!-- <div class="col l6 m12 s12 left-align"> -->
+                                <img id="imagePreview" class="" [src]="methods.urlFile" alt="productImage" />
+                                <div class="input-field">
+                                    <div class="file-field input-field">
+                                       <div class="btn">
+                                          <span>Imagen</span>
+                                          <input name="urlFile" type="file" ngModel (change)="methods.getFiles($event)">
+                                       </div>
+                                       <div class="file-path-wrapper">
+                                          <input name="filePath" class="file-path validate" type="text" ngModel>
+                                       </div>
+                                   </div>
+                                </div>
+                            <!-- </div> -->
+                            <!-- <div class="col l3 m12 s12 ">
+                                <div class="input-field">
+                                    <div class="file-field input-field">
+                                       <div class="btn">
+                                          <span>Imagen</span>
+                                          <input name="urlFile" type="file" ngModel (change)="methods.getFiles($event)">
+                                       </div>
+                                       <div class="file-path-wrapper">
+                                          <input name="filePath" class="file-path validate" type="text" ngModel>
+                                       </div>
+                                   </div>
+                                </div>
+                            </div> -->
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col l4 m6 s12">
-                        <div class="file-field input-field">
-                           <div class="btn">
-                              <span>Imagen</span>
-                              <input name="fileImageProduct" type="file" ngModel (change)="getFiles($event)">
-                           </div>
-                           <div class="file-path-wrapper">
-                              <input class="file-path validate" type="text">
-                           </div>
-                       </div>
+                <div class="section">
+                    <div class="row">
+                        <div class="col l4 m6 s12">
+                            <h5>Detalles del producto</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col l4 m6 s12">
+                            <input name="nameProduct" type="text" class="validate" ngModel required>
+                            <label for="nameProduct">Nombre</label>
+                        </div>
+                        <div class="input-field col l4 m6 s12">
+                            <input name="descriptionProduct" type="text" class="validate" ngModel>
+                            <label for="descriptionProduct">Descripción</label>
+                        </div>
+                        <div class="input-field col l4 m6 s12">
+                            <input name="amountProduct" type="text" class="validate" value="{{ getValueChange() | currency }}" (change)="onChange($event.target.value)" ngModel>
+                            <label for="amountProduct">Precio</label>
+                        </div>
                     </div>
                 </div>
               </form>
           </div>
       </div>
+    </div>
+</div>
+<!-- end form to products-->
+<!-- start modal to products-->
+<div class="row">
+    <div class="col l12 m12 s12">
+        <!-- <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
+          <thead>
+          <tr>
+              <th style="width: 20%">
+                  <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
+              </th>
+              <th style="width: 50%">
+                  <mfDefaultSorter by="description">Descripción</mfDefaultSorter>
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let product of products">
+              <td>{{product.name}}</td>
+              <td>{{product.description}}</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+              <td colspan="4">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+              </td>
+          </tr>
+          </tfoot>
+        </table> -->
     </div>
 </div>

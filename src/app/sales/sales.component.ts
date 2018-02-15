@@ -4,7 +4,8 @@ import { DataService } from '../data.service';
 
 import { CurrencyPipe } from '@angular/common';
 
-import {Main} from '../main'
+import { Methods } from '../methods'
+import { Main } from '../main'
 
 declare var jquery:any;
 declare var $ :any
@@ -17,15 +18,28 @@ declare var $ :any
 })
 export class SalesComponent implements OnInit {
   main: any = new Main;
+  methods: any;
+  response: any;
   products: Array<any>;
+
   @ViewChildren('imagesProducts') carousel: QueryList<any>;
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService) {
+    this.methods = new Methods(_dataService);
+
+    //start get full table
+    this._dataService.getTable('get','products', { _id: -1 }, 100)
+        .subscribe(res => {
+            this.response = res;
+            this.products = res.data;
+        });
+    //end get full table
 
     // Access the Data Service's getProducts() method we defined
-    this._dataService.getTable('get','products',{_id:-1},100)
-        .subscribe(res => this.products = res);
+
+    // this._dataService.getTable('get','products',{_id:-1},100)
+    //     .subscribe(res => this.products = res);
   }
 
   ngOnInit() {

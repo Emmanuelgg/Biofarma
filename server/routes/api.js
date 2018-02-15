@@ -2,8 +2,13 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const router = express.Router();
 const app = express();
+app.use(fileUpload());
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
+
+var multer = require('multer');
+var path = require('path');
+
 var db;
 // Connect
 const connection = (closure) => {
@@ -50,15 +55,16 @@ router.post('/get', (req, res) => {
             .sort(req.body.order)
             .limit(req.body.limit)
             .toArray()
+            .catch((err) => {
+                sendError(err, res);
+                response.message = {success:"",error:err};
+            })
             .then((result) => {
                 response.data = result;
                 response.ok = true;
                 response.status = 1;
-                response.message = "Se obtuvieron los registros correctamente";
-                res.json({response});
-            })
-            .catch((err) => {
-                sendError(err, res);
+                response.message = {success:"Se obtuvieron los registros correctamente",error:""};
+                res.send({response});
             });
     });
 });
@@ -70,29 +76,61 @@ router.post('/add', (req, res) => {
             .insert(req.body.form)
             .catch((err) => {
                 sendError(err, res);
+                response.message = {success:"",error:err};
             }).then((result) => {
                 response.ok = true;
                 response.data = req.body.form;
                 response.status = 1;
-                response.message = "Se a registra correctamente";
-                res.json({response});
+                response.message = {success:"Se a guardado correctamente",error:""};
+                res.send({response});
             });
     });
 });
 
-//uploadFiles
-router.post('/uploadFiles', (req, res) => {
-  //console.log(req);
-  //console.log(res);
-  console.log(req.body);
-    connection((db) => {
-        db.collection('products')
-            .insert(req.body)
-            .catch((err) => {
-                sendError(err, res);
-            });
-    });
+//uploadImages
+
+var storage = multer.diskStorage({
+  // destino del fichero
+  destination: function (req, file, cb) {
+    console.log(req);
+    cb(null, './src/assets/resources/images/');
+  },
+  // renombrar fichero
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
 });
+
+var upload = multer({ storage: storage });
+
+router.post("/upload", upload.array("files", 12), function (req, res) {
+  response.ok = true;
+  response.data = req.body;
+  response.status = 1;
+  response.message = {success:"Se a subido el archivo correctamente",error:""};
+  res.send({response});
+
+});
+
+//uploadImages
+
+// router.post('/upload', "files", (req, res) => {
+//   console.log(req);
+//   //console.log(res);
+//     if (!req.files)
+//         return res.status(0).send('No files were uploaded.');
+//
+//     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+//     let sampleFile = req.body.files.sampleFile;
+//
+//     // Use the mv() method to place the file somewhere on your server
+//     sampleFile.mv(req.body.pathFile.toString(), function(err) {
+//         if (err)
+//             return res.status(0).send(err);
+//
+//         res.send('File uploaded!');
+//     });
+// });
 
 // Get products
 // router.get('/products', (req, res) => {

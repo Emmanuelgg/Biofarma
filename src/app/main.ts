@@ -3,8 +3,9 @@ export class Main {
   title: string = 'BIO FARMA';
 
   //paths
-  pathLogo: string = 'assets/images/biofarma-logo.jpg';
-  pathImages: string = 'assets/images/';
+  pathLogo: string = './assets/images/biofarma-logo.jpg';
+  pathImages: string = './assets/images/';
+  pathImagesResources: string = './assets/resources/images/';
 
   //colors
   mainColor: string = 'teal accent-4';
@@ -34,4 +35,9 @@ export class Main {
   pathDB: string = '/api/';
     //path develop
   //pathDB: string = 'localhost:4300/api/products';
+
+  //toast color
+  toastDefaultColor: string = 'blue lighten-1';
+  toastDangerColor: string = 'red lighten-1';
+  toastSuccessColor: string = 'green lighten-1';
 }

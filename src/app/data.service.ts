@@ -22,7 +22,8 @@ export class DataService {
     let options = new RequestOptions({ headers: headers });
     var data = {form:form,collectionName:collectionName};
     return this._http.post(this.main.pathDB+url, data, options)
-      .map(result => this.result = result.json().response);
+      .map( result  => {return result.json()})
+      .catch( (error: any) => Observable.throw(error.json().error || 'server error') );
   }
 
   getTable(url:string,collectionName:string,order:any,limit) {
@@ -30,18 +31,23 @@ export class DataService {
     let options = new RequestOptions({ headers: headers });
     var data = {collectionName:collectionName, limit:limit, order:order};
     return this._http.post(this.main.pathDB+url,data,options)
-      .map(result => this.result = result.json().response.data);
+      .map(result => this.result = result.json().response)
+      .catch( (error: any) => Observable.throw(error.json().error || 'server error') );
   }
 
-  getLastProducts() {
-    return this._http.get(this.main.pathDB+"lastProducts")
-      .map(result => this.result = result.json().response.data);
+  uploadFiles(method,files:any, pathFile: String) {
+    var data = {pathFile:pathFile, files:files};
+    return this._http.post(this.main.pathDB+method, files)
+      .map(files => files.json())
+      .catch( (error: any) => Observable.throw(error.json().error || 'server error') );
   }
 
-  uploadFiles(files:any) {
-    return this._http.post(this.main.pathDB+"uploadFiles",files)
-      .map(result => this.result = result.json().response.data);
-  }
+  // getLastProducts() {
+  //   return this._http.get(this.main.pathDB+"lastProducts")
+  //     .map(result => this.result = result.json().response.data);
+  // }
+
+
 
   // addProduct(form:any) : Observable<any> {
   //   console.log(form);

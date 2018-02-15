@@ -17,3 +17,25 @@ html {
 blockquote{
   border-left: 5px solid #00bfa5 !important;
 }
+
+
+#toast-container {
+  top: 5% !important;
+  right: 45% !important;
+}
+
+#imagePreview {
+  width: 180px !important;
+  max-width: 180px !important;
+  background-color: #cccccc;
+}
+
+.valign-bottom {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: bottom;
+      -ms-flex-align: bottom;
+          align-items: bottom;
+          vertical-align: bottom;
+}

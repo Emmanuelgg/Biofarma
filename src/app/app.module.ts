@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
 
+
+
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -20,6 +22,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 
 
@@ -35,7 +38,8 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
     DateComponent,
     MenuComponent,
     FooterComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+    AdminUsersComponent
   ],
   imports: [
     BrowserModule,

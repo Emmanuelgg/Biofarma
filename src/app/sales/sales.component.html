@@ -2,7 +2,7 @@
     <div class="col l4 s12 m6" *ngFor="let product of products">
         <div class="card">
           <div class="card-image" class="center">
-            <img id="imagesProducts"  src="{{main.pathImages}}{{product.urlImage}}" class="materialboxed" [attr.data-caption]="product.nameProduct">
+            <img id="imagesProducts"  src="{{main.pathImagesResources}}{{product.urlFile  ? product.urlFile : 'imagePreview.png'}}" class="materialboxed responsive-img" [attr.data-caption]="product.nameProduct">
           </div>
           <div class="card-content">
             <span class="card-title">{{ product.amountProduct | currency }}</span>
