@@ -29,7 +29,7 @@ export class SalesComponent implements OnInit {
     this.methods = new Methods(_dataService);
 
     //start get full table
-    this._dataService.getTable('get','products', { _id: -1 }, 100)
+    this._dataService.getTable('getAll','products', { _id: -1 }, 100)
         .subscribe(res => {
             this.response = res;
             this.products = res.data;

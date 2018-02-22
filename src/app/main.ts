@@ -5,7 +5,7 @@ export class Main {
   //paths
   pathLogo: string = './assets/images/biofarma-logo.jpg';
   pathImages: string = './assets/images/';
-  pathImagesResources: string = './assets/resources/images/';
+  pathImagesResources: string = '/assets/resources/images/';
 
   //colors
   mainColor: string = 'teal accent-4';
@@ -13,9 +13,9 @@ export class Main {
   iconColor: string = 'grey darken-4';
   textColor : string = 'grey-text text-lighten-3';
     //button
-  buttonDefaultColor : string = 'grey darken-3 teal-text text-accent-4 ';
-  buttonDangerColor : string = 'grey darken-3 red-text text-lighten-1 ';
-  buttonSuccessColor : string = 'grey darken-3 green-text text-accent-4  ';
+  buttonDefaultColor : string = 'grey darken-3 teal-text text-accent-4 waves-effect waves-teal';
+  buttonDangerColor : string = 'grey darken-3 red-text text-lighten-1 waves-effect waves-red';
+  buttonSuccessColor : string = 'grey darken-3 green-text text-accent-4  waves-effect waves-green';
     //navTitle
       //color 1
   //navTitle : string = 'teal accent-4 grey-text text-lighten-3';

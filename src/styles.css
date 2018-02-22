@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 html {
   /*font Abril*/
@@ -30,12 +31,27 @@ blockquote{
   background-color: #cccccc;
 }
 
-.valign-bottom {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: bottom;
-      -ms-flex-align: bottom;
-          align-items: bottom;
-          vertical-align: bottom;
+.modal-header {
+    border-radius: 0 0 2px 2px;
+    //background-color: #fafafa;
+    padding: 4px 6px;
+    height: 56px;
+    width: 100%;
+}
+
+.mat-table, .mat-paginator {
+    background: #fff0 !important;
+}
+
+.modal {
+    width: 95% !important;
+    height: 90% !important;
+}
+
+.modal-footer {
+    z-index: 1003 !important;
+}
+
+.cdk-overlay-container {
+    z-index: 1003 !important;
 }

@@ -17,15 +17,15 @@ declare var $ :any
 export class DashboardComponent implements OnInit {
 
   main: any = new Main;
-  products: Array<any>;
+  items: Array<any>;
   response: any;
   @ViewChildren('carousel-item') carousel: QueryList<any>;
 
   constructor(private _dataService: DataService) {
-    this._dataService.getTable('get','products', { _id: -1 }, 4)
+    this._dataService.getTable('getAll','products', { _id: -1 }, 4)
         .subscribe(res => {
             this.response = res;
-            this.products = res.data;
+            this.items = res.data;
         });
   }
 

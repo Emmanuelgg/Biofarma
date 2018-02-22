@@ -26,10 +26,19 @@ export class DataService {
       .catch( (error: any) => Observable.throw(error.json().error || 'server error') );
   }
 
-  getTable(url:string,collectionName:string,order:any,limit) {
+  getTable(url:string,collectionName:string,order:any, limit) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     var data = {collectionName:collectionName, limit:limit, order:order};
+    return this._http.post(this.main.pathDB+url,data,options)
+      .map(result => this.result = result.json().response)
+      .catch( (error: any) => Observable.throw(error.json().error || 'server error') );
+  }
+
+  getItem(url:string, collectionName:string, id:any, order:any, limit) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    var data = {collectionName:collectionName, id:id, limit:limit, order:order};
     return this._http.post(this.main.pathDB+url,data,options)
       .map(result => this.result = result.json().response)
       .catch( (error: any) => Observable.throw(error.json().error || 'server error') );
@@ -39,6 +48,15 @@ export class DataService {
     var data = {pathFile:pathFile, files:files};
     return this._http.post(this.main.pathDB+method, files)
       .map(files => files.json())
+      .catch( (error: any) => Observable.throw(error.json().error || 'server error') );
+  }
+
+  deleteItem(url:string, collectionName:string, id:any) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    var data = {collectionName:collectionName, id:id};
+    return this._http.post(this.main.pathDB+url,data,options)
+      .map(result => this.result = result.json().response)
       .catch( (error: any) => Observable.throw(error.json().error || 'server error') );
   }
 

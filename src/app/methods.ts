@@ -1,10 +1,12 @@
 import { NgForm } from '@angular/forms';
 
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Inject, NgModule} from '@angular/core';
 
 import { DataService } from './data.service';
 
 import {Main} from "./main";
+
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 declare var Materialize: any;
 
@@ -16,7 +18,7 @@ export class Methods {
 
   main: any = new Main;
   files: FileList;
-  urlFile: String = this.main.pathImages+'imagePreview.png';
+  urlFile: String = this.main.pathImagesResources+'imagePreview.png';
 
   //start submitForm
   onSubmit(form: NgForm, collectionName:string, method:string, files:FileList, message: string ) {
@@ -26,7 +28,7 @@ export class Methods {
         if( files != null && files.length > 0){
             form.value.urlFile = files[0].name;
             form.value.type = files[0].type;
-            form.value.filePathImages = "assets/resources/images/";
+            form.value.pathImagesResources = "assets/resources/images/";
             this.uploadFiles('upload',files, form.value.filePath);
         }
 
@@ -50,7 +52,7 @@ export class Methods {
 
   //start resetForm
   resetForm(form: any) {
-      this.urlFile = this.main.pathImages+'imagePreview.png';
+      this.urlFile = this.main.pathImagesResources+'imagePreview.png';
       form.reset();
   }
   //finish resetForm
@@ -90,5 +92,19 @@ export class Methods {
    }
    //finish uploadFiles
 
+   //start deleteItem
+   deleteItem(method: String, id: any, message: string){
+       this._dataService.deleteItem('delete','products', id)
+           .subscribe(res => {
+               var response = res;
+               if (response.status == 1 && response.ok == true) {
+                   Materialize.toast(response.message.success+' '+message, 5000, this.main.toastSuccessColor);
+               } else {
+                   Materialize.toast(response.message.error, 5000, this.main.toastDangerColor);
+               }
+           });
+   }
+
+   //finish deleteItem
 
 }

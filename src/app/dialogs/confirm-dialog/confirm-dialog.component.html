@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col l14 m12 s12">
+        <h4>{{ title }}</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col l14 m12 s12">
+        <p>{{ message }}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col l12 m12 s12">
+        <a (click)="dialogRef.close()" class="btn {{main.buttonDefaultColor}}"><i class="material-icons center">done</i> Cancelar</a>
+        <a (click)="dialogRef.close(true)" class="btn {{main.buttonDangerColor}}"><i class="material-icons center">delete_forever</i> Confirmar</a>
+    </div>
+</div>

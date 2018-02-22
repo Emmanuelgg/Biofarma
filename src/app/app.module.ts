@@ -24,8 +24,17 @@ import { DataService } from './data.service';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 
+// Import material.angular
+import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
+         MatSortModule, MatTableModule } from "@angular/material";
+// Import Dialog module
+import {MatDialogModule} from '@angular/material/dialog';
 
-
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+//import materil.angular animations
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+//Import dialog module
+import { DialogsModule } from './dialogs/dialogs.module';
 
 
 @NgModule({
@@ -49,7 +58,21 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
       apiKey: 'AIzaSyDuSBrONzdoZ_EPoWhM8btDW-Er7oldCIU'
     }),
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    DialogsModule,
+  ],
+  exports: [
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

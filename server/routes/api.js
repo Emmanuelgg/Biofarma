@@ -48,7 +48,7 @@ let response = {
 // });
 
 //getTable
-router.post('/get', (req, res) => {
+router.post('/getAll', (req, res) => {
     connection((db) => {
         db.collection(req.body.collectionName.toString())
             .find()
@@ -58,6 +58,7 @@ router.post('/get', (req, res) => {
             .catch((err) => {
                 sendError(err, res);
                 response.message = {success:"",error:err};
+                res.send({response});
             })
             .then((result) => {
                 response.data = result;
@@ -72,16 +73,65 @@ router.post('/get', (req, res) => {
 //addToTable
 router.post('/add', (req, res) => {
     connection((db) => {
+
         db.collection(req.body.collectionName.toString())
             .insert(req.body.form)
             .catch((err) => {
                 sendError(err, res);
                 response.message = {success:"",error:err};
+                res.send({response});
             }).then((result) => {
                 response.ok = true;
                 response.data = req.body.form;
                 response.status = 1;
                 response.message = {success:"Se a guardado correctamente",error:""};
+                res.send({response});
+            });
+
+    });
+});
+
+//get item
+router.post('/getOne', (req, res) => {
+    var add = {_id: new ObjectID(req.body.id)};
+    console.log(req.body);
+    connection((db) => {
+        db.collection(req.body.collectionName.toString())
+            .find(add)
+            .sort(req.body.order)
+            .limit(req.body.limit)
+            .toArray()
+            .catch((err) => {
+                sendError(err, res);
+                response.message = {success:"",error:err};
+                res.send({response});
+            })
+            .then((result) => {
+                response.data = result;
+                console.log(result)
+                response.ok = true;
+                response.status = 1;
+                response.message = {success:"Se obtuvo correctamente el registro",error:""};
+                res.send({response});
+            });
+    });
+});
+
+
+//delete item
+router.post('/delete', (req, res) => {
+    var remove = {_id: new ObjectID(req.body.id)};
+    connection((db) => {
+        db.collection(req.body.collectionName.toString())
+            .deleteOne(remove)
+            .catch((err) => {
+                sendError(err, res);
+                response.message = {success:"",error:err};
+            }).then((result) => {
+                response.ok = true;
+                response.data = req.body.id;
+                response.status = 1;
+                response.message = {success:"Se a eliminado correctamente",error:""};
                 res.send({response});
             });
     });
