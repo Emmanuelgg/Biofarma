@@ -1,31 +1,5 @@
-<!-- star tab admin products -->
-<br/>
-<div class="row">
-    <div class="col s12 m12 l12 ">
-        <ul class="tabs">
-            <li class="tab col s3"><a href="#admin" class="active {{main.textColorTeal}}">Altas de productos</a></li>
-            <li class="tab col s3"><a href="#list" class="{{main.textColorTeal}}">Lista de productos</a></li>
-        </ul>
-    </div>
-    <div id="admin" class="col s12 m12 l12">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <app-form-products></app-form-products>
-            </div>
-        </div>
-    </div>
-    <div id="list" class="col s12">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <app-list-products></app-list-products>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end tab admin products -->
-
 <!-- start form to products-->
-<!-- <div class="row">
+<div class="row">
     <div class="col l12 m12 s12">
       <div class="row">
           <div class="card">
@@ -33,14 +7,12 @@
                   <div class="row {{main.navTitle}} ">
                       <div class="col l12 m12 s12 hide-on-med-and-down">
                           <span class="card-title left-aling">Productos</span>
-                          <a class="waves-effect waves-light btn {{main.buttonDangerColor}} right"><i class="material-icons left">delete_forever</i>Eliminar</a>
                           <a (click)="methods.resetForm(formAdminProducts)"  class="btn {{main.buttonDefaultColor}} right"><i class="material-icons left">cached</i>Reiniciar</a>
                           <a (click)="formAdminProducts.ngSubmit.emit()" class="btn {{main.buttonSuccessColor}} right"><i class="material-icons left">save</i>Guardar</a>
                           <a (click)="getProducts()" class="modal-trigger btn {{main.buttonDefaultColor}} right" href="#productsModal" ><i class="material-icons left">view_list</i>Listar</a>
                       </div>
                       <div class="col l12 m12 s12 show-on-medium-and-down hide-on-large-only">
                           <span class="card-title left-aling">Productos</span>
-                          <a class="btn-small {{main.buttonDangerColor}} right"><i class="material-icons left">delete_forever</i>Eliminar</a>
                           <a (click)="methods.resetForm(formAdminProducts)" class="btn-small {{main.buttonDefaultColor}} right"><i class="material-icons left">cached</i>Reiniciar</a>
                           <a (click)="formAdminProducts.ngSubmit.emit()" class="btn-small {{main.buttonSuccessColor}} right"><i class="material-icons left">save</i>Guardar</a>
                           <a class="btn-small {{main.buttonDefaultColor}} right"><i class="material-icons left">view_list</i>Listar</a>
@@ -54,15 +26,15 @@
                       </div>
                       <div class="row">
                           <div class="col l4 m12 s12 center-align">
-                              <img id="imagePreview" [src]="methods.urlFile" alt="productImage" />
+                              <img id="imagePreview" [src]="methods.urlFile" alt="product image" />
                               <div class="input-field">
                                   <div class="file-field input-field">
                                      <div class="btn">
                                         <span>Imagen</span>
-                                        <input name="urlFile" type="file" ngModel (change)="methods.getFiles($event)">
+                                        <input name="filePath" type="file" ngModel (change)="methods.getFiles($event)">
                                      </div>
                                      <div class="file-path-wrapper">
-                                        <input name="filePath" class="file-path validate" type="text" ngModel>
+                                        <input name="urlFile" class="file-path" type="text" ngModel>
                                      </div>
                                  </div>
                               </div>
@@ -89,6 +61,8 @@
                               <label for="amount">Precio</label>
                           </div>
                       </div>
+                      <input name="_id" type="hidden" ngModel>
+                      <input name="urlFile" type="hidden" ngModel (ngModelChange)="methods.updateFile($event)">
                   </div>
                   <div class="row {{main.navTitle}} ">
                       <div class="col l12 m12 s12 hide-on-med-and-down">
@@ -104,10 +78,10 @@
           </div>
       </div>
     </div>
-</div> -->
+</div>
 <!-- end form to products-->
 <!-- Modal Structure -->
-<!-- <div id="productsModal" class="modal modal-fixed-footer">
+<div id="productsModal" class="modal modal-fixed-footer">
     <div class="modal-header {{main.navTitle}}">
         <div class="row">
             <div class="col l12 m12 s12">
@@ -137,14 +111,14 @@
                     </ng-container>
 
                     <ng-container matColumnDef="amount">
-                        <mat-header-cell *matHeaderCellDef> Costo </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
                         <mat-cell *matCellDef="let item"> {{item.amount | currency}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
                         <mat-cell *matCellDef="let item">
-                              <a (click)="onSelectClicked(item)" class="btn {{main.buttonDefaultColor}}"><i class="material-icons center">done</i></a>
+                              <a (click)="onSelectClicked(item, formAdminProducts)" class="btn {{main.buttonDefaultColor}}"><i class="material-icons center">edit</i></a>
                             <a (click)="onDeleteClicked(item)" class="btn {{main.buttonDangerColor}}"><i class="material-icons center">delete_forever</i></a>
                         </mat-cell>
                     </ng-container>
@@ -162,7 +136,7 @@
     <div class="modal-footer">
       <a class="modal-action modal-close waves-effect waves-teal btn-flat {{main.buttonDefaultColor}} ">Cerrar</a>
     </div>
-</div> -->
+</div>
 <!-- end modal to products-->
 
 <!-- <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">

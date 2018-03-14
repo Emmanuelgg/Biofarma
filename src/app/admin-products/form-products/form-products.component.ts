@@ -1,19 +1,17 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 
-import { DataService } from '../data.service';
-import { DialogsService } from '../dialogs/dialogs.service';
+import { DataService } from '../../data.service';
+import { DialogsService } from '../../dialogs/dialogs.service';
 
 import { DataSource } from '@angular/cdk/collections';
 
-import { NgForm } from '@angular/forms';
+import { NgForm , FormGroup} from '@angular/forms';
 
 import { CurrencyPipe } from '@angular/common';
 
-import { Main } from '../main';
+import { Main } from '../../main';
 
-import { Methods } from '../methods'
-
-import { Title }     from '@angular/platform-browser';
+import { Methods } from '../../methods'
 
 declare var Materialize: any;
 
@@ -27,11 +25,11 @@ declare var jquery:any;
 declare var $ :any
 
 @Component({
-  selector: 'app-admin-products',
-  templateUrl: './admin-products.component.html',
-  styleUrls: ['./admin-products.component.css']
+  selector: 'app-form-products',
+  templateUrl: './form-products.component.html',
+  styleUrls: ['./form-products.component.css']
 })
-export class AdminProductsComponent implements OnInit {
+export class FormPrductsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -45,19 +43,13 @@ export class AdminProductsComponent implements OnInit {
   products: Array<any>;
   displayedColumns = ['name','description','amount', 'action'];
   dataSource: any;
-  formAdminProducts: NgForm;
 
 
-  constructor(private _dataService: DataService, private dialogsService: DialogsService, private titleService: Title ) {
+  constructor(private _dataService: DataService, private dialogsService: DialogsService ) {
       this.methods = new Methods(_dataService);
-      this.titleService.setTitle( "Administracion de productos" );
   }
 
   ngOnInit() {
-
-  }
-
-  ngAfterViewInit() {
       $('.modal').modal();
   }
 
@@ -90,18 +82,26 @@ export class AdminProductsComponent implements OnInit {
   }
 
   //click to row
-  onSelectClicked(row) {
+  onSelectClicked(row, form) {
     this._dataService.getItem('getOne','products', row._id, {_id:-1} , 1)
         .subscribe(res => {
             var response = res;
             if (response.status == 1 && response.ok == true) {
                 Materialize.toast(response.message.success, 5000, this.main.toastSuccessColor);
-                //this.formAdminProducts.value(response.data[0]);
+                var data = response.data[0];
+                delete data.type;
+                //console.log(data.urlFile);
+                data.filePath = "";
+                delete data.pathImagesResources;
+                form.setValue(data);
+                 $('#productsModal').modal('close');
+                 Materialize.updateTextFields();
             } else {
                 Materialize.toast(response.message.error, 5000, this.main.toastDangerColor);
             }
         });
   }
+
   onDeleteClicked(row) {
       //this.methods.deleteItem('delete', row._id, ' el producto');
       this.dialogsService

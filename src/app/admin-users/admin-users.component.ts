@@ -10,6 +10,8 @@ import { Main } from '../main';
 
 import { Methods } from '../methods'
 
+import { Title }     from '@angular/platform-browser';
+
 //materialize.angular
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
@@ -24,8 +26,9 @@ export class AdminUsersComponent implements OnInit {
   methods: any;
   valueCurrency : string = '0';
 
-  constructor(private _dataService: DataService) {
+  constructor(private _dataService: DataService, private titleService: Title) {
       this.methods = new Methods(_dataService);
+      this.titleService.setTitle( "Gestion de administradores" );
   }
 
   ngOnInit() {

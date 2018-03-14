@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
 
 
@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MapComponent } from './map/map.component';
 import { ContactComponent } from './contact/contact.component';
+import { FormPrductsComponent } from './admin-products/form-products/form-products.component'
+import { ListProductsComponent } from './admin-products/list-products/list-products.component'
 
 import { AgmCoreModule } from '@agm/core';
 import { AppRoutingModule } from './/app-routing.module';
@@ -48,6 +50,8 @@ import { DialogsModule } from './dialogs/dialogs.module';
     MenuComponent,
     FooterComponent,
     AdminProductsComponent,
+    FormPrductsComponent,
+    ListProductsComponent,
     AdminUsersComponent
   ],
   imports: [
@@ -74,7 +78,10 @@ import { DialogsModule } from './dialogs/dialogs.module';
     MatButtonModule,
     MatCheckboxModule
   ],
-  providers: [DataService],
+  providers: [
+      DataService,
+      Title
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

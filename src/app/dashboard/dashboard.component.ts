@@ -6,6 +6,8 @@ import {Main} from "../main";
 
 import { DataService } from '../data.service';
 
+import { Title }     from '@angular/platform-browser';
+
 declare var jquery:any;
 declare var $ :any
 
@@ -21,12 +23,14 @@ export class DashboardComponent implements OnInit {
   response: any;
   @ViewChildren('carousel-item') carousel: QueryList<any>;
 
-  constructor(private _dataService: DataService) {
+  constructor(private _dataService: DataService, private titleService: Title) {
     this._dataService.getTable('getAll','products', { _id: -1 }, 4)
         .subscribe(res => {
             this.response = res;
             this.items = res.data;
         });
+
+    this.titleService.setTitle( "Bio farma" );
   }
 
   ngOnInit() {

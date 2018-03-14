@@ -12,6 +12,7 @@ export class Main {
   footerColor: string = 'teal accent-4';
   iconColor: string = 'grey darken-4';
   textColor : string = 'grey-text text-lighten-3';
+  textColorTeal : string = 'teal-text text-accent-4 '
     //button
   buttonDefaultColor : string = 'grey darken-3 teal-text text-accent-4 waves-effect waves-teal';
   buttonDangerColor : string = 'grey darken-3 red-text text-lighten-1 waves-effect waves-red';

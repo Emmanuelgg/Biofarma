@@ -73,20 +73,41 @@ router.post('/getAll', (req, res) => {
 //addToTable
 router.post('/add', (req, res) => {
     connection((db) => {
+        var update = req.body.form._id;
+        delete req.body.form._id;
+        if (update != null && update != "") {
 
-        db.collection(req.body.collectionName.toString())
-            .insert(req.body.form)
-            .catch((err) => {
-                sendError(err, res);
-                response.message = {success:"",error:err};
-                res.send({response});
-            }).then((result) => {
-                response.ok = true;
-                response.data = req.body.form;
-                response.status = 1;
-                response.message = {success:"Se a guardado correctamente",error:""};
-                res.send({response});
-            });
+            db.collection(req.body.collectionName.toString())
+                .update(
+                    {_id: new ObjectID(update)},
+                    {$set:req.body.form}
+                )
+                .catch((err) => {
+                    sendError(err, res);
+                    response.message = {success:"",error:err};
+                    res.send({response});
+                }).then((result) => {
+                    response.ok = true;
+                    response.data = req.body.form;
+                    response.status = 1;
+                    response.message = {success:"Se a editado correctamente",error:""};
+                    res.send({response});
+                });
+        } else {
+            db.collection(req.body.collectionName.toString())
+                .insert(req.body.form)
+                .catch((err) => {
+                    sendError(err, res);
+                    response.message = {success:"",error:err};
+                    res.send({response});
+                }).then((result) => {
+                    response.ok = true;
+                    response.data = req.body.form;
+                    response.status = 1;
+                    response.message = {success:"Se a guardado correctamente",error:""};
+                    res.send({response});
+                });
+        }
 
     });
 });
