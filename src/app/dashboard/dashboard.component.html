@@ -1,9 +1,22 @@
 <div class="row">
+    <div id="containerCarousel">
+        <div class="carousel carousel-slider center" data-indicators="true">
+            <div class="carousel-fixed-item center">
+                <a class="btn waves-effect white grey-text darken-text-2" routerLink='/date'>Agendar cita</a>
+            </div>
+            <div *ngFor="let item of items" id="carousel-item" class="carousel-item black white-text">
+              <h2>{{item.name}}</h2>
+              <p class="white-text">{{item.description}}</p>
+                <img id="imagesProducts" src="{{main.pathImagesResources}}{{item.urlFile  ? item.urlFile : 'imagePreview.png'}}">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="col l6 s12 center-align card-panel">
         <h5>Nosotros</h5>
-        <blockquote>
-          <h6>Introducción</h6>
-        </blockquote>
         <div id="aboutUs">
             <p class="flow-text">
               Un defecto común que hemos visto en muchos frameworks es la falta de soporte para el texto verdaderamente responsivo. Mientras que otros elementos de la página responden fluidamente,
@@ -15,9 +28,6 @@
     </div>
     <div class="col l6 s12 center-align card-panel">
         <h5>Ubicación</h5>
-        <blockquote>
-          <h6>Mapa</h6>
-        </blockquote>
         <div class="map"><app-map></app-map></div>
     </div>
 </div>

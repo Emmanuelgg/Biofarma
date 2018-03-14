@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css'],
-  providers: [AppComponent]
+  styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
 
