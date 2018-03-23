@@ -1,20 +1,16 @@
 <!-- star tab admin products -->
 <br/>
 <div class="row">
-    <div class="col s12 m12 l12 ">
+    <div class="col s12">
         <ul class="tabs">
-            <li class="tab col s3"><a href="#admin" class="active {{main.textColorTeal}}">Altas de productos</a></li>
-            <li class="tab col s3"><a href="#list" class="{{main.textColorTeal}}">Lista de productos</a></li>
+            <li class="tab"><a href="#admin" class="active {{main.textColorTeal}}">Altas de productos</a></li>
+            <li class="tab"><a href="#list" class="{{main.textColorTeal}}">Lista de productos</a></li>
         </ul>
     </div>
-    <div id="admin" class="col s12 m12 l12">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <app-form-products></app-form-products>
-            </div>
-        </div>
-    </div>
-    <div id="list" class="col s12">
+<div id="admin" class="col s12 m12 l12">
+    <app-form-products></app-form-products>
+</div>
+    <div id="list" class="col s12 m12 l12">
         <div class="row">
             <div class="col s12 m12 l12">
                 <app-list-products></app-list-products>

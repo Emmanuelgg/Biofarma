@@ -10,8 +10,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MapComponent } from './map/map.component';
 import { ContactComponent } from './contact/contact.component';
-import { FormPrductsComponent } from './admin-products/form-products/form-products.component'
-import { ListProductsComponent } from './admin-products/list-products/list-products.component'
+
 
 import { AgmCoreModule } from '@agm/core';
 import { AppRoutingModule } from './/app-routing.module';
@@ -23,8 +22,13 @@ import { FooterComponent } from './footer/footer.component';
 // Import the Http Module and our Data Service
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
+
 import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { FormProductsComponent } from './admin-products/form-products/form-products.component'
+import { ListProductsComponent } from './admin-products/list-products/list-products.component'
+
 import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { FormUsersComponent } from './admin-users/form-users/form-users.component'
 
 // Import material.angular
 import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
@@ -50,9 +54,10 @@ import { DialogsModule } from './dialogs/dialogs.module';
     MenuComponent,
     FooterComponent,
     AdminProductsComponent,
-    FormPrductsComponent,
+    FormProductsComponent,
     ListProductsComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
+    FormUsersComponent
   ],
   imports: [
     BrowserModule,

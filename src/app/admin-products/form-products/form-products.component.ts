@@ -29,7 +29,7 @@ declare var $ :any
   templateUrl: './form-products.component.html',
   styleUrls: ['./form-products.component.css']
 })
-export class FormPrductsComponent implements OnInit {
+export class FormProductsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -41,7 +41,7 @@ export class FormPrductsComponent implements OnInit {
   files: FileList;
   response: any;
   products: Array<any>;
-  displayedColumns = ['name','description','amount', 'action'];
+  displayedColumns = [ 'barCode','name','description','amount', 'action'];
   dataSource: any;
 
 

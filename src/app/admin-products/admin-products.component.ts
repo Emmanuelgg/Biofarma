@@ -58,7 +58,8 @@ export class AdminProductsComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-      $('.modal').modal();
+    $('.modal').modal();
+    $('ul.tabs').tabs();
   }
 
   getProducts(){
@@ -123,6 +124,7 @@ export class AdminProductsComponent implements OnInit {
                   }
         );
   }
+
 
    // this._dataService.addProduct(formAdminProducts.form.value)
    //     .subscribe(res => this.message = res);
