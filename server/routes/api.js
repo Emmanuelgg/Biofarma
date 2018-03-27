@@ -115,7 +115,6 @@ router.post('/add', (req, res) => {
 //get item
 router.post('/getOne', (req, res) => {
     var add = {_id: new ObjectID(req.body.id)};
-    console.log(req.body);
     connection((db) => {
         db.collection(req.body.collectionName.toString())
             .find(add)
@@ -129,7 +128,6 @@ router.post('/getOne', (req, res) => {
             })
             .then((result) => {
                 response.data = result;
-                console.log(result)
                 response.ok = true;
                 response.status = 1;
                 response.message = {success:"Se obtuvo correctamente el registro",error:""};
@@ -163,7 +161,6 @@ router.post('/delete', (req, res) => {
 var storage = multer.diskStorage({
   // destino del fichero
   destination: function (req, file, cb) {
-    console.log(req);
     cb(null, './src/assets/resources/images/');
   },
   // renombrar fichero
