@@ -55,3 +55,7 @@ blockquote{
 .cdk-overlay-container {
     z-index: 1003 !important;
 }
+
+.tabs .indicator {
+    background-color: #00bfa5;
+}

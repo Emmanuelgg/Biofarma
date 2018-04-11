@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 // import { AgmCoreModule } from '@agm/core';
 
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,5 +11,9 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+    public constructor(private titleService: Title ) { }
 
+    public setTitle( newTitle: string) {
+        this.titleService.setTitle( newTitle );
+    }
 }

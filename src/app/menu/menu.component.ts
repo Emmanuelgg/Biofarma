@@ -18,19 +18,13 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    $(".button-collapse").sideNav();
-    this.activeMenu();
+
   }
 
-  activeMenu() {
-      $('.nav-wrapper').on('click','li',function(e){
-          $('.nav-wrapper li').removeClass('active');
-          $(this).addClass('active');
-      });
-      $('.nav-wrapper').on('click','.brand-logo',function(e){
-          $('.nav-wrapper li').removeClass('active');
-          $('.nav-wrapper li:first-child').addClass('active');
-      });
-  }
+  ngAfterViewInit() {
+      $(".button-collapse").sideNav();
 
+      $('.dropdown-button').dropdown();
+
+  }
 }

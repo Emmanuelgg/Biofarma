@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 
-import { DataService } from '../data.service';
-import { DialogsService } from '../dialogs/dialogs.service';
+import { DataService } from '../../data.service';
+import { DialogsService } from '../../dialogs/dialogs.service';
 
 import { DataSource } from '@angular/cdk/collections';
 
@@ -9,11 +9,9 @@ import { NgForm } from '@angular/forms';
 
 import { CurrencyPipe } from '@angular/common';
 
-import { Main } from '../main';
+import { Main } from '../../main';
 
-import { Methods } from '../methods'
-
-import { Title }     from '@angular/platform-browser';
+import { Methods } from '../../methods'
 
 declare var Materialize: any;
 
@@ -27,11 +25,11 @@ declare var jquery:any;
 declare var $ :any
 
 @Component({
-  selector: 'app-admin-products',
-  templateUrl: './admin-products.component.html',
-  styleUrls: ['./admin-products.component.css']
+  selector: 'app-list-products',
+  templateUrl: './list-products.component.html',
+  styleUrls: ['./list-products.component.css']
 })
-export class AdminProductsComponent implements OnInit {
+export class ListProductsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -45,21 +43,19 @@ export class AdminProductsComponent implements OnInit {
   products: Array<any>;
   displayedColumns = ['name','description','amount', 'action'];
   dataSource: any;
-  formAdminProducts: NgForm;
 
 
-  constructor(private _dataService: DataService, private dialogsService: DialogsService, private titleService: Title ) {
+  constructor(private _dataService: DataService, private dialogsService: DialogsService ) {
       this.methods = new Methods(_dataService);
-      this.titleService.setTitle( "Administracion de productos" );
   }
 
   ngOnInit() {
-
+      $('.modal').modal();
+      this.getProducts();
   }
 
-  ngAfterViewInit() {
-    $('.modal').modal();
-    $('ul.tabs').tabs();
+  ngAfterViewInit(){
+      this.getProducts();
   }
 
   getProducts(){
@@ -97,7 +93,6 @@ export class AdminProductsComponent implements OnInit {
             var response = res;
             if (response.status == 1 && response.ok == true) {
                 Materialize.toast(response.message.success, 5000, this.main.toastSuccessColor);
-                //this.formAdminProducts.value(response.data[0]);
             } else {
                 Materialize.toast(response.message.error, 5000, this.main.toastDangerColor);
             }
@@ -124,16 +119,5 @@ export class AdminProductsComponent implements OnInit {
                   }
         );
   }
-
-
-   // this._dataService.addProduct(formAdminProducts.form.value)
-   //     .subscribe(res => this.message = res);
-
-   // this._dataService.uploadFiles(this.files)
-   //     .subscribe(res => this.message = res);
-
-   // console.log(formAdminProducts.value);
-   // this._dataService.postUploadFiles()
-   //     .subscribe(res => res = res);
 
 }

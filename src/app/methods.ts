@@ -75,6 +75,13 @@ export class Methods {
    }
    //finish get files to input[type="file"]
 
+    updateFile(event:any){
+      if (event == null)
+        this.urlFile = this.main.pathImagesResources + 'imagePreview.png';
+      else
+        this.urlFile = "assets/resources/images/" + event;
+    }
+
    //start uploadFiles
    uploadFiles(method: String,files: FileList, pathFile: String) {
 
