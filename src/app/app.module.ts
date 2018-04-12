@@ -10,17 +10,19 @@ import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
 
 // Import material.angular
-import { MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
-         MatSortModule, MatTableModule } from "@angular/material";
 // Import Dialog module
-import {MatDialogModule} from '@angular/material/dialog';
 
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+
 //import materil.angular animations
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+//import matreail.angular
+import { MaterialModule } from './material/material.module'
+
 //Import dialog module
 import { DialogsModule } from './dialogs/dialogs.module';
+
+
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
@@ -45,20 +47,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     }),
     HttpModule,
     AppRoutingModule,
-    MatInputModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatProgressSpinnerModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatDialogModule,
     DialogsModule,
+    MaterialModule
   ],
   exports: [
-    MatButtonModule,
-    MatCheckboxModule
   ],
   providers: [
       DataService,
